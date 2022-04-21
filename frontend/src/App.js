@@ -6,14 +6,12 @@ import axios from 'axios';
 function App() {
  
 
-  const [todos, setTodos] = useState('')
+
 
  async function getAllTodos(){
    try {
     const todos = await axios.get('http://localhost:5000/api/v1/todos')
-     .then((res) =>{
-       setTodos(res.data)
-     })
+     console.log(todos)
    } catch (error) {
      console.log(error)
    }
@@ -25,13 +23,7 @@ function App() {
 
   return (
     <div className='App'>
-      {
-        todos.map((todo) =>{
-          return(
-            <div>{todo.title}</div>
-          )
-        })
-      }
+      <h1>All Todos</h1>
     </div>
   
   );

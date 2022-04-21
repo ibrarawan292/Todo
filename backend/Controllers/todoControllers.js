@@ -1,21 +1,5 @@
 const Todo =require('../models/todoSchema')
 
-
-
-const todos = [
-    {
-      "id": 11,
-      "title": "This is some title",
-      "desc": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, aspernatur?"
-  
-    },
-    {
-      "id": 12,
-      "title": "This is another title",
-      "desc": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, aspernatur?"
-  
-    }
-  ]
   
 exports.createNewTodo = async (req, res) => {
     const body = req.body;
