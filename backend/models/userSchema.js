@@ -29,7 +29,8 @@ const userSchema = new mongoose.Schema({
                                 return /^(?=(.*[a-z]){3,})(?=(.*[A-Z]){2,})(?=(.*[0-9]){2,})(?=(.*[!@#$%^&*()\-__+.]){1,}).{8,}$/.test(v);
                         },
                         message: props => `${props.value} should have 2 uppercase, one special character, two digits, atleast 8 character long!`
-                }
+                },
+                
 
         }
       

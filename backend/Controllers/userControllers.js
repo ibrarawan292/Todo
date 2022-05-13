@@ -1,5 +1,7 @@
 const User = require('../models/userSchema')
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv').config()
 
 
 
@@ -51,9 +53,45 @@ exports.createUser = async (req, res, next) => {
 }
 
 
-exports.login = (req, res) => {
-  const body = req.body;
+exports.login = async (req, res, next) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  const user = await User.findOne({email:email})
+
+  if(!user){
+       return next(new Error('email not found'))
+  }
+
+  const hash = user.password;
+  const isPasswordMatch = await bcrypt.compare(password, hash)
+
+  if(!isPasswordMatch){
+      return next(new Error("password not Match"))
+  }
+
+  const token = jwt.sign({_id:user._id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 });
+  
+  res.cookie('jwt_tokon', token, {HttpOnly:true, expire: Date.now() + 60*60*1000}).json({
+   "message": "you are successfully logged in! Enjoy",
+   user,
+
+  })
+
 }
+
+exports.logout = async (req, res, next) =>{
+   try {
+     res.cookie('jwt_token', null, {expire: Date.now()}).json({
+       success: true,
+       message: "you are successfully logout"
+     })
+
+   } catch (error) {
+     
+   }
+}
+
 
 
 

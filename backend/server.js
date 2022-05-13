@@ -54,13 +54,13 @@ app.use((err, req, res, next) => {
   }
   // Wrong Mongoose duplicate key errors
   if (err.code === 11000) {
-    const message = `Duplicate ${object.keys(err.keyValue)} entered`
+    const message = `Duplicate ${Object.keys(err.keyValue)} entered`
     error = new Error(message)
   }
 
   res.json({
     success: false,
-    message: error.message
+    message: error.message 
   })
 
 })
