@@ -7,11 +7,13 @@ const bodyParser = require('body-parser')
 const todoRoutes = require('./Routes/todoRoutes')
 const userRoutes = require('./Routes/userRoutes')
 const connectDB = require('./Config/db')
+const cookieParser = require('cookie-parser')
 
 connectDB();
 
 
 app.use(bodyParser.json())
+app.use(cookieParser())
 app.use(cors({
   origin: process.env.FRONT_END_URI,
   optionsSuccessStatus: 200

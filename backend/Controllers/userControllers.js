@@ -71,8 +71,14 @@ exports.login = async (req, res, next) => {
   }
 
   const token = jwt.sign({_id:user._id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 });
+
+  // res.json({
+  //   message: 'you are suucessfully logged in',
+  //   user,
+  //   token
+  // })
   
-  res.cookie('jwt_tokon', token, {HttpOnly:true, expire: Date.now() + 60*60*1000}).json({
+  res.cookie('jwt_tokon', token, {httpOnly:true, expires: new Date(Date.now() + 60*60*1000)}).json({
    "message": "you are successfully logged in! Enjoy",
    user,
 
@@ -80,16 +86,11 @@ exports.login = async (req, res, next) => {
 
 }
 
-exports.logout = async (req, res, next) =>{
-   try {
-     res.cookie('jwt_token', null, {expire: Date.now()}).json({
-       success: true,
-       message: "you are successfully logout"
-     })
-
-   } catch (error) {
-     
-   }
+exports.logout =  (req, res, next) =>{
+  res.cookie('jwt_token', null, {expires: new Date(Date.now())}).json({
+    success: true,
+    message: "you are successfully logout"
+  })
 }
 
 
