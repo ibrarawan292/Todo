@@ -1,12 +1,10 @@
 
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
+import Register from './Pages/Register';
 
 function App() {
- 
- 
-  
 
 
  async function getAllTodos(){
@@ -24,7 +22,7 @@ function App() {
 
   return (
     <div className='App'>
-      <h1>All Todos</h1>
+      <Register/>
     </div>
   
   );
