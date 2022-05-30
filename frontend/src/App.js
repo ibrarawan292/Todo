@@ -3,6 +3,7 @@ import './App.css';
 import { useEffect } from 'react';
 import axios from 'axios';
 import Register from './Pages/Register';
+import Counter from './Counter';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
   return (
     <div className='App'>
       <Register/>
+      <Counter/>
     </div>
   
   );

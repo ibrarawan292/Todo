@@ -6,16 +6,23 @@ body{
 .App {
   text-align: center;
 }
+p{
+  margin: 0;
+  padding: 0;
+}
 
+.register-form{
+  margin: 1rem;
+}
 .container{
   padding: 0;
 }
 
 .register-form-container{
-  margin: 8rem auto;
   display: inline-block;
   background-color: #ddd;
-  padding: 2rem;
+  padding: 1.5rem;
+ 
 
 }
 .register-form-container .form-title{
@@ -24,9 +31,10 @@ body{
 
 .register-form-container label{
   display: block;
-  font-weight:600;
+  font-weight:500;
   text-align: left;
   padding-left: 12px;
+  padding-top: 9px;
 }
 
 .register-form-container input{
@@ -34,7 +42,6 @@ body{
     outline: none;
     border: 1px solid #ddd;
     border-radius: 17px;
-    margin-bottom: 0;
     width: 350px;
     padding: calc(0.375em - 1px) calc(0.625em - 1px)
 }
@@ -42,6 +49,9 @@ body{
   color: red;
   text-align: left;
   padding-left: 12px;
+  padding-bottom: 0;
+  font-size: small;
+  font-weight: 400;
   
 
 }
@@ -52,4 +62,10 @@ body{
   background: radial-gradient(circle, rgba(63,94,251,1) 14%, rgba(216,70,252,1) 100%);
   border-radius: 50px;
   border: 1px solid rgb(63 94 251);
+}
+.avatar{
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  margin-bottom: 3px;
 }

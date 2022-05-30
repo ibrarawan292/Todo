@@ -100,9 +100,6 @@ exports.logout =  (req, res, next) =>{
 }
 
 
-
-
-
 exports.getAllUsers = async (req, res, next) => {
   try {
     const users = await User.find({})

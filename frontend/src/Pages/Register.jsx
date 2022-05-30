@@ -1,16 +1,17 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import avatar from '../images/avatar.jpg'
 
 const Register = () => {
 
-    const { handleSubmit, handleBlur, handleChange, handleReset, values, touched, errors } = useFormik({
+    const { handleSubmit, handleBlur, handleChange, values, touched, errors, setFieldValue, setPreview } = useFormik({
         initialValues: {
             firstName: '',
             lastName: '',
             email: '',
             password: '',
-            avatar: '',
+            avatar: avatar,
         },
         validationSchema: Yup.object({
             firstName: Yup.string()
@@ -18,12 +19,12 @@ const Register = () => {
                 .max(15, 'Must be 15 characters or less')
                 .required('First name is Required'),
 
-            LastName: Yup.string()
+            lastName: Yup.string()
                 .min(3, 'Must be 3 characters or long')
                 .max(15, 'Must be 15 characters or less')
                 .required('Last Name name is Required'),
 
-            email: Yup.string().email('Invalid email address').required('Required'),
+            email: Yup.string().email('Invalid email address').required('Email is Required'),
 
             password: Yup.string()
                 .min(6, 'Must be 6 characters or long')
@@ -57,8 +58,8 @@ const Register = () => {
                         value={values.firstName}
 
                     />
-                    {errors.firstName ?  <p className='error'>Please enter a firstName</p>: null }
-                   
+                    {touched.firstName && errors.firstName ? <p className='error'>{errors.firstName}</p> : null}
+
 
                     <label htmlFor="lastName">Last Name</label>
                     <input
@@ -71,7 +72,7 @@ const Register = () => {
 
 
                     />
-                    <p className='error'>Please enter a lastName</p>
+                    {touched.lastName && errors.lastName ? <p className='error'>{errors.lastName}</p> : null}
 
                     <label htmlFor="email">Email Address</label>
                     <input
@@ -84,7 +85,7 @@ const Register = () => {
 
 
                     />
-                    <p className='error'>Please enter a email</p>
+                    {touched.email && errors.email ? <p className='error'>{errors.email}</p> : null}
 
                     <label htmlFor="password">Password</label>
                     <input
@@ -97,19 +98,33 @@ const Register = () => {
 
 
                     />
-                    <p className='error'>Please enter a Password</p>
+                    {touched.password && errors.password ? <p className='error'>{errors.password}</p> : null}
 
                     <label htmlFor="avatar">Please upload a picture</label>
                     <input
-                        id="img"
-                        name="image"
+                        id="avatar"
+                        name="avatar"
                         type="file"
-                        onChange={handleChange}
+                        onChange={(event) => {
+                            let reader = new FileReader();
+                            reader.onload = () => {
+                                if (reader.readyState === 2) {
+
+                                    console.log(reader.result)
+                                    setFieldValue('avatar', reader.result);
+                                    setPreview(reader.result)
+
+                                }
+                            }
+                            reader.readAsDataURL(event.target.files[0])
+                        }}
                         onBlur={handleBlur}
-                        value={values.picture}
+
 
                     />
-                    <p className='error'>Please upload an picture</p>
+                    {touched.avatar && errors.avatar ? <p className='error'>{errors.avatar}</p> : null}
+
+                    <img className='avatar' src={values.avatar} alt="" />
 
                     <button type="submit">Submit</button>
                 </form>
