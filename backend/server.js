@@ -2,7 +2,6 @@ const express = require('express')
 const dotenv = require('dotenv').config()
 const app = express()
 const cors = require('cors')
-const port = 5000
 const bodyParser = require('body-parser')
 const todoRoutes = require('./Routes/todoRoutes')
 const userRoutes = require('./Routes/userRoutes')

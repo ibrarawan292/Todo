@@ -3,7 +3,12 @@ import './App.css';
 import { useEffect } from 'react';
 import axios from 'axios';
 import Register from './Pages/Register';
-import Counter from './Counter';
+import Counter from './Counter'
+import Todos from './Todos';
+
+
+
+
 
 function App() {
 
@@ -25,6 +30,9 @@ function App() {
     <div className='App'>
       <Register/>
       <Counter/>
+      <Todos/>
+
+      
     </div>
   
   );
